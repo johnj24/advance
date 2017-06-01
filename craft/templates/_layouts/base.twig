@@ -1,0 +1,52 @@
+{# This template also defines 3 `block` regions, which child templates are free to
+ # override:
+ #
+ #   * `head`: This block wraps the entire default contents of our `<head>` tag.
+ #             If a child template wishes to add more to the head, they can do so
+ #             like this:
+ #
+ #                 {% block siteHead %}
+ #                     {{ parent() }}
+ #                     <!-- additional stuff -->
+ #                 {% endblock %}
+ #
+ #             Calling `{{ parent() }}` will output the contents of the `head`
+ #             block that are already defined in this template.
+ #
+ #   * `css`: This block is placed around the stylesheet declarations and can
+ #            can be replaced or added to by child templates.
+ #
+ #   * `body`: This block is placed directly after the opening `<body>` tag.
+ #             Child templates can use this to define the main body contents.
+ #}
+<!doctype html>
+<html lang="en">
+<head>
+  {% block head %}
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>{% if siteTitle is defined %}{{ siteTitle }} - {% endif %}{{ siteName }}</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% block css %}
+      <link rel="stylesheet" href="/css/main.css">
+    {% endblock css %}
+  {% endblock head %}
+</head>
+
+<body{% if bodyClass is defined %} class="{{ bodyClass }}"{% endif %}>
+	{% block body %}{% endblock body %}
+
+  <script src="https://code.jquery.com/jquery-{{JQUERY_VERSION}}.min.js" integrity="{{JQUERY_SRI_HASH}}" crossorigin="anonymous"></script>
+  <script>window.jQuery || document.write('<script src="js/vendor/jquery-{{JQUERY_VERSION}}.min.js"><\/script>')</script>
+  <script src="js/plugins.js"></script>
+  <script src="js/main.js"></script>
+
+  <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
+  <script>
+    window.ga=function(){ga.q.push(arguments)};ga.q=[];ga.l=+new Date;
+    ga('create','UA-XXXXX-Y','auto');ga('send','pageview')
+  </script>
+  <script src="https://www.google-analytics.com/analytics.js" async defer></script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+{% extends '_layouts/site' %}
+
+{% block main %}
+  <div class="o-Wrapper">
+    <h5>{{ entry.title }}</h1>
+    {% for block in entry.body %}
+      {% include '_partials/matrix/blocks/' ~ block.type %}
+    {% endfor %}
+  </div>
+{% endblock %}

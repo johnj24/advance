@@ -1,0 +1,29 @@
+{# ==========================================================================
+   MACRO HELPERS
+   ========================================================================== #}
+
+{##
+ # Macros can be defined in any template, and need to be "imported" before being
+ # used.
+ #
+ # Example: {% import '_macros/helpers' as helpers %}
+ #}
+
+{# Date Formatting
+   ========================================================================== #}
+
+{##
+ # Reusable date formatting that defaults to the full length date format.
+ #
+ # Example: {{ helpers.dateFormatted(entry.postDate, short) }}
+ # Output: 16th April 2017
+ #}
+
+{% macro dateFormatted(givenDate, type = 'full') %}
+  {% switch type %}
+    {% case short %}
+      {{ givenDate | date('m/d/Y') }}
+    {% case full %}
+      {{ givenDate | date('jS F Y') }}
+  {% endswitch %}
+{% endmacro %}

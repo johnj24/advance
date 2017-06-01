@@ -1,0 +1,45 @@
+/* ==========================================================================
+   #HEADINGS
+   ========================================================================== */
+
+/**
+ * Simple default styles for headings 1 through 6. Anything more opinionated
+ * than simple font-size changes should likely be applied via classes (see:
+ * http://csswizardry.com/2016/02/managing-typography-on-large-apps/).
+ */
+
+// We have all of our heading font sizes defined here. Passing these pixel
+// values into our `font-size()` mixin will generate a rem-based
+// `font-size` with a pixel fallback, as well as generating a `line-height` that
+// will sit on our baseline grid.
+
+$font-size-h1:  47.776px !default;
+$font-size-h2:  33.184px !default;
+$font-size-h3:  27.648px !default;
+$font-size-h4:  23.04px !default;
+$font-size-h5:  19.2px !default;
+$font-size-h6:  16px !default;
+
+h1 {
+  @include font-size($font-size-h1, 1);
+}
+
+h2 {
+  @include font-size($font-size-h2, 1.2);
+}
+
+h3 {
+  @include font-size($font-size-h3, 1.2);
+}
+
+h4 {
+  @include font-size($font-size-h4, 1.2);
+}
+
+h5 {
+  @include font-size($font-size-h5, 1.44);
+}
+
+h6 {
+  @include font-size($font-size-h6, 1.44);
+}

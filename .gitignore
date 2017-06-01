@@ -1,0 +1,21 @@
+node_modules
+
+# Craft CMS
+# ------------------------------------------------------------------------------
+craft/*
+!craft/config
+craft/config/*
+!craft/config/db.php
+!craft/config/general.php
+!craft/config/redactor
+!craft/templates
+
+# Build files
+# ------------------------------------------------------------------------------
+public/assets/*
+public/images/*
+
+# OS Or Editor files
+# ------------------------------------------------------------------------------
+.DS_Store
+.editorconfig

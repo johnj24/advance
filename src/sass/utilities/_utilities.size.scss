@@ -1,0 +1,160 @@
+/* ==========================================================================
+   #SIZE
+   ========================================================================== */
+
+/**
+ * inuitcss generates a series of utility classes that give a fluid width to
+ * whichever element they’re applied, e.g.:
+ *
+ *   <img src="" alt="" class="u-size1of2" />
+ *
+ * These classes are most commonly used in conjunction with our layout system,
+ * e.g.:
+ *
+ *   <div class="o-Grid-cell  u-size1of2">
+ *
+ * By default, inuitcss will also generate responsive variants of each of these
+ * classes by using your Sass MQ configuration, e.g.:
+ *
+ *   <div class="o-Grid-cell  u-size1of1  u-md-size1of2  u-lg-size1of3">
+ *
+ * Optionally, inuitcss can generate offset classes which can push and pull
+ * elements left and right by a specified amount, e.g.:
+ *
+ *   <div class="o-Grid-cell  u-size2of3  u-before1of3">
+ *
+ * This is useful for making very granular changes to the rendered order of
+ * items in a layout.
+ *
+ * N.B. This option is turned off by default.
+ */
+
+
+
+
+
+// Which fractions would you like in your grid system(s)? By default, inuitcss
+// provides you fractions of one whole, halves, thirds, quarters and fifths,
+// e.g.:
+//
+//   .u-size1of2
+//   .u-size2of5
+//   .u-size3of4
+//   .u-size2of3
+
+$fractions: 1 2 3 4 5 !default;
+
+
+
+
+
+// Optionally, inuitcss can generate classes to offset items by a certain width.
+// Would you like to generate these types of class as well? E.g.:
+//
+//   .u-before1of3
+//   .u-before2of4
+//   .u-before1of5
+//   .u-before2of3
+
+$offsets: true !default;
+
+
+
+
+
+// By default, inuitcss uses fractions-like classes like `<div class="u-1/4">`.
+// You can change the `/` to whatever you fancy with this variable.
+$widths-delimiter: of !default;
+
+
+
+
+
+// When using Sass-MQ, this defines the separator for the breakpoints suffix
+// in the class name. By default, we are generating the responsive suffixes
+// for the classes with a `@` symbol so you get classes like:
+// <div class="u-3/12@mobile">
+$widths-breakpoint-separator: "-";
+
+
+
+
+
+// A mixin to spit out our width classes. Pass in the columns we want the widths
+// to have, and an optional suffix for responsive widths. E.g. to create thirds
+// and quarters for a small breakpoint:
+//
+// @include widths(3 4, -sm);
+
+@mixin widths($columns, $breakpoint: null) {
+
+  // Loop through the number of columns for each denominator of our fractions.
+  @each $denominator in $columns {
+
+    // Begin creating a numerator for our fraction up until we hit the
+    // denominator.
+    @for $numerator from 1 through $denominator {
+
+      // Build a class in the format `.u-[<breakpoint>]-size3of4`.
+      .u#{$breakpoint}-size#{$numerator}#{$widths-delimiter}#{$denominator} {
+        flex-basis: auto !important;
+        width: ($numerator / $denominator) * 100% !important;
+      }
+
+      @if ($offsets == true) {
+
+        // Build a class in the format '.u-[<breakpoint>]-before1of2'.
+        .u#{$breakpoint}-before#{$numerator}#{$widths-delimiter}#{$denominator} {
+          margin-right: auto !important; /* 1 */
+        }
+
+        // Build a class in the format '.u-[<breakpoint>]-after1of2'.
+        .u#{$breakpoint}-after#{$numerator}#{$widths-delimiter}#{$denominator}#{$breakpoint} {
+          margin-right: ($numerator / $denominator) * 100% !important;
+        }
+
+      }
+
+    }
+
+  }
+
+}
+
+
+
+
+/**
+ * A series of width helper classes that you can use to size things like grid
+ * systems. Classes take a fraction-like format (e.g. `.u-2/3`). Use these in
+ * your markup:
+ *
+ * <div class="u-size7of12">
+ *
+ * The following will generate widths helper classes based on the fractions
+ * defined in the `$fractions` list.
+ */
+
+@include widths($fractions);
+
+
+
+
+/**
+ * If we’re using Sass-MQ, automatically generate grid system(s) for each of our
+ * defined breakpoints, and give them a Responsive Suffix, e.g.:
+ *
+ * <div class="u-3/12@mobile">
+ */
+
+@if (variable-exists(mq-breakpoints)) {
+
+  @each $bp-name, $bp-value in $mq-breakpoints {
+
+    @include mq($from: $bp-name) {
+      @include widths($fractions, #{$widths-breakpoint-separator}#{$bp-name});
+    }
+
+  }
+
+}

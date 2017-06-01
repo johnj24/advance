@@ -1,0 +1,63 @@
+/* ==========================================================================
+   #BLOCK
+   ========================================================================== */
+
+/**
+ * Stacked image-with-text object. A simple abstraction to cover a very commonly
+ * occurring design pattern.
+ */
+
+.o-Block {
+  display: block;
+  text-align: center;
+}
+
+
+  .o-Block-img {
+    margin-bottom: $global-spacing-unit;
+
+
+    /* Size variants.
+       ====================================================================== */
+
+    .o-Block--flush > & {
+      margin-bottom: 0;
+    }
+
+    .o-Block--tiny > & {
+      margin-bottom: $global-spacing-unit-tiny;
+    }
+
+    .o-Block--small > & {
+      margin-bottom: $global-spacing-unit-small;
+    }
+
+    .o-Block--large > & {
+      margin-bottom: $global-spacing-unit-large;
+    }
+
+    .o-Block--huge > & {
+      margin-bottom: $global-spacing-unit-huge;
+    }
+
+  }
+
+
+  .o-Block-body {
+    display: block;
+  }
+
+
+
+
+
+/* Alignment variants.
+   ========================================================================== */
+
+.o-Block--right {
+  text-align: right;
+}
+
+.o-Block--left {
+  text-align: left;
+}

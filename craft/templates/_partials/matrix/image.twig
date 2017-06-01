@@ -1,0 +1,34 @@
+{# if multiple images #}
+{% if block.files|length > 1 %}
+  <figure class="c-Entry-object c-Entry-object--{{ block.alignment }}">
+    {% for image in block.files %}
+      
+      <div class="c-Entry-figure">
+        <img src="{{ image.url }}" alt="{% if image.altText %}{{ image.altText }}{% else %}{{ image.caption }}{% endif %}">
+        
+        {% if image.caption %}<figcaption class="c-Entry-caption">{{ image.caption }}</figcaption>{% endif %}
+      </div><!--/entry figure component -->
+    {% endfor %}
+      
+    {% if block.caption %}<figcaption class="c-Entry-caption">{{ block.caption }}</figcaption>{% endif %}
+  </figure><!--/entry object -->
+
+{# if single images #}
+{% else %}
+  {% for image in block.files %}
+    <figure class="c-Entry-figure c-Entry-figure--{{ block.alignment }}">
+      {% if block.alignment == "center" %}
+        <img src="{{ image.url('md') }}" alt="{% if image.caption %}{{ image.caption }}{% else %}{{ image.altText }}{% endif %}">
+      {% elseif block.alignment == "full" %}
+        <img src="{{ image.url('lg') }}" alt="{% if image.caption %}{{ image.caption }}{% else %}{{ image.altText }}{% endif %}">
+      {% endif %}
+      
+      {% if image.credit or block.caption or image.caption %}
+        <figcaption class="c-Entry-caption">
+          {% if block.caption %}{{ block.caption }}{% else %}{{ image.caption }}{% endif %}
+          {% if image.credit %}<span class="u-credit">{{ image.credit }}</span>{% endif %}
+        </figcaption>
+      {% endif %}
+    </figure><!--/entry figure component -->
+  {% endfor %}
+{% endif %}

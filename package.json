@@ -1,0 +1,67 @@
+{
+  "name": "advance",
+  "version": "1.0.0",
+  "description": "",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "John Johnson",
+  "license": "ISC",
+  "paths": {
+    "src": {
+      "base": "./src/",
+      "css": "./src/css/",
+      "fonts": "./src/fonts/",
+      "json": "./src/json/",
+      "js": "./src/js/",
+      "img": "./src/img/",
+      "scss": "./src/sass/",
+      "templates": "./src/templates/"
+    },
+    "dist": {
+      "base": "./public/",
+      "css": "./public/css/",
+      "js": "./public/js/",
+      "fonts": "./public/fonts/",
+      "img": "./public/img/",
+      "templates": "./craft/templates/"
+    },
+    "build": {
+      "base": "./build/",
+      "css": "./build/css/",
+      "fonts": "./build/fonts/",
+      "js": "./build/js/",
+      "html": "./build/html/",
+      "img": "./build/img/"
+    },
+    "favicon": {
+      "src": "./src/img/favicon-src.png",
+      "dest": "./public/img/site/",
+      "path": "/img/site/"
+    },
+    "scss": []
+  },
+  "vars": {
+    "siteCssName": "main.combined.min.css",
+    "scssName": "main.scss",
+    "cssName": "main.css"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.18.8",
+    "fancy-log": "^1.3.0",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.1.1",
+    "gulp-cached": "^1.1.1",
+    "gulp-changed": "^2.0.0",
+    "gulp-cssnano": "^2.1.2",
+    "gulp-if": "^2.0.2",
+    "gulp-load-plugins": "^1.5.0",
+    "gulp-notify": "^3.0.0",
+    "gulp-plumber": "^1.1.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^3.1.0",
+    "gulp-size": "^2.1.0",
+    "gulp-sourcemaps": "^2.6.0"
+  }
+}
