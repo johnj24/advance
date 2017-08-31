@@ -20,11 +20,11 @@
       "templates": "./src/templates/"
     },
     "dist": {
-      "base": "./public/",
-      "css": "./public/css/",
-      "js": "./public/js/",
-      "fonts": "./public/fonts/",
-      "img": "./public/img/",
+      "base": "./public/assets/",
+      "css": "./public/assets/css/",
+      "js": "./public/assets/js/",
+      "icons": "./public/assets/icons/",
+      "img": "./public/assets/img/",
       "templates": "./craft/templates/"
     },
     "build": {

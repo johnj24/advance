@@ -1,27 +1,40 @@
 <?php
 
 /**
- * Database Configuration
+ * General Configuration
  *
- * All of your system's database configuration settings go in here.
- * You can see a list of the default settings in craft/app/etc/config/defaults/db.php
+ * All of your system's general configuration settings go in here.
+ * You can see a list of the default settings in craft/app/etc/config/defaults/general.php
  */
 
 return array(
+  '*' => array(
+    // Whether "index.php" should be visible in URLs (true, false, "auto")
+    'omitScriptNameInUrls' => auto,
+    'usePathInfo'=> true,
+    'cpTrigger' => 'admin',
+    'allowAutoUpdates' => false,
+    // Default Week Start Day (0 = Sunday, 1 = Monday...)
+    'defaultWeekStartDay' => 0,
+    // Enable CSRF Protection (recommended, will be enabled by default in Craft 3)
+    'enableCsrfProtection' => true,
+  ),
 
-	// The database server name or IP address. Usually this is 'localhost' or '127.0.0.1'.
-	'server' => 'localhost',
+  'advance.dev' => array(
+    'devMode' => true,
+    'useCompressedJs' => false,
+    'allowAutoUpdates' => true,
+    'environmentVariables' => array(
+      'baseUrl' => 'http://advance.dev:8888/',
+      'basePath' => '/applications/mamp/htdocs/advance/public/',
+    ),
+  ),
 
-	// The name of the database to select.
-	'database' => 'add_database',
-
-	// The database username to connect with.
-	'user' => 'add_username',
-
-	// The database password to connect with.
-	'password' => '123456789',
-
-	// The prefix to use when naming tables. This can be no more than 5 characters.
-	'tablePrefix' => 'craft',
+  'staging' => array(
+    'environmentVariables' => array(
+      'siteUrl' => '',
+      'sitePath' => '',
+    ),
+  ),
 
 );

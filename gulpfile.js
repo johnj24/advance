@@ -51,24 +51,24 @@ gulp.task('sass', () => {
 });
 
 // Moving templates
-gulp.task('templates', function(){
-	return gulp.src(pkg.paths.src.templates + '**/*.twig')
-    .pipe($.rename({extname: ".html"}))
-    .pipe($.changed(pkg.paths.dist.templates))
-    .pipe($.size({ gzip: true, showFiles: true }))
-	  .pipe(gulp.dest(pkg.paths.dist.templates))
-    .pipe(browserSync.reload({
-      stream: true
-    }))
-});
+//gulp.task('templates', function(){
+//	return gulp.src(pkg.paths.src.templates + '**/*.twig')
+//    .pipe($.rename({extname: ".html"}))
+//    .pipe($.changed(pkg.paths.dist.templates))
+//    .pipe($.size({ gzip: true, showFiles: true }))
+//	  .pipe(gulp.dest(pkg.paths.dist.templates))
+//    .pipe(browserSync.reload({
+//      stream: true
+//    }))
+//});
 
 
 
 // Rerun the task when a file changes
-gulp.task('watch', ['browserSync', 'sass', 'templates'], function(){
+gulp.task('watch', ['browserSync', 'sass'], function(){
   gulp.watch(pkg.paths.src.scss + '/**/*', ['sass']);
   // reloads the browser whenever HTML files change
-  gulp.watch(pkg.paths.src.templates + '/**/*.twig', ['templates']);
+  gulp.watch(pkg.paths.dist.templates + '/**/*.twig').on('change', browserSync.reload);
   // Other watchers
 })
 
